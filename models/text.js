@@ -1,7 +1,8 @@
 export class TextModel{
-    constructor(title, imageUri){
+    constructor(title, image, id){
         this.title = title;
-        this.imageUri = imageUri;
-        this.id = id
+        this.imageUri = image.uri;
+        this.base64 = image.base64;
+        this.id = id;
     }
 }

@@ -1,19 +1,25 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import TextList from '../components/Texts/TextList'
 import {useIsFocused } from '@react-navigation/native' 
-import { fetchTexts } from '../utls/database';
+import { fetchTexts } from '../utils/database';
 
 
 export default function AllTexts({route}) {
     const isFocused = useIsFocused();
     const [loadedTexts, setLoadedTexts] = React.useState([])
-    React.useEffect(async() => {
+
+    const getLoadedTexts =  async() => {
+        const texts = await fetchTexts();
+        setLoadedTexts(texts);
+    }
+
+    useEffect(() => {
         if (isFocused){
-            const texts = await fetchTexts();
-            setLoadedTexts(texts);
+            getLoadedTexts();
         }
     },[isFocused])
 
+  
     return (
         <TextList texts={loadedTexts} />
     )

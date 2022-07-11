@@ -1,16 +1,15 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
+import  {useState, useEffect} from 'react';
+import AppLoading from 'expo-app-loading';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import AllTexts from './screens/AllTexts';
 import AddText from './screens/AddText';
 import IconButton from './components/UI/IconButton';
 import { Colors } from './constants/color';
-import Map from './screens/Map'
-import React, {useState} from 'react';
-import { init } from './utls/database';
-import AppLoading from 'expo-app-loading';
-import PlaceDetails from './screens/PlaceDetails';
+import { init } from './utils/database';
+import TextDetails from './screens/TextDetails';
 
 const Stack = createNativeStackNavigator();
 
@@ -18,7 +17,7 @@ const Stack = createNativeStackNavigator();
 export default function App() {
   const [dbInitialized, setdbInitialized] = useState(false)
 
-  React.useEffect(() => {
+  useEffect(() => {
     init()
     .then(() => {
       setdbInitialized(true);
@@ -53,16 +52,16 @@ export default function App() {
             )}
           />
           <Stack.Screen 
-            name='AddPlace' 
-            component={AddPlace} 
+            name='AddText' 
+            component={AddText} 
             options={{
-              title: 'Add a new Place'
+              title: 'Add a new Text'
             }}
           />
          
           <Stack.Screen
-            name='PlaceDetails'
-            component={PlaceDetails}
+            name='TextDetails'
+            component={TextDetails}
             options={{
               title: 'Loading Place...',
             }}
@@ -81,3 +80,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
 });
+
+
+

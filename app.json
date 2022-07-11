@@ -1,10 +1,11 @@
 {
   "expo": {
-    "name": "react-native-practical-guide-code",
-    "slug": "react-native-practical-guide-code",
+    "name": "my-app",
+    "slug": "my-app",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
+    "userInterfaceStyle": "light",
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
@@ -27,14 +28,6 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    },
-    "plugins": [
-      [
-        "expo-image-picker",
-        {
-          "cameraPermission": "The app accesses your camera in order to take photos of your favorite places."
-        }
-      ]
-    ]
+    }
   }
 }

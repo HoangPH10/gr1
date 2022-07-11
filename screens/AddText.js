@@ -2,11 +2,13 @@
 
 import React from 'react'
 import TextForms from '../components/Texts/TextForms'
-import { insertPlace } from '../utls/database'
+import {Text, View} from 'react-native'
+import { insertText } from '../utils/database'
 
-export default function AddPlace({navigation}) {
+export default function AddText({navigation}) {
   const createTextHandler = async(text) => {
-    await insertPlace(text);
+    console.log('base64', text.base64)
+    await insertText(text);
     navigation.navigate('AllTexts')
   }
   return (

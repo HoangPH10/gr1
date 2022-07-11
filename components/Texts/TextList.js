@@ -1,31 +1,31 @@
 import { FlatList, View, StyleSheet, Text } from 'react-native'
 import React from 'react'
-import PlaceItem from './TextItem'
+import TextItem from './TextItem'
 import { Colors } from '../../constants/color'
 import { useNavigation } from '@react-navigation/native'
 
 
-export default function TextList({places}) {
+export default function TextList({texts}) {
     const navigation = useNavigation();
 
-    const selectPlaceHandler = (id) => {
-        navigation.navigate('PlaceDetails', {
-            placeId: id
+    const selectTextHandler = (id) => {
+        navigation.navigate('TextDetails', {
+            textId: id
         })
     }
 
-    if(!places || places.length === 0){
+    if(!texts || texts.length === 0){
         return <View style={styles.fallbackContainer}>
-            <Text style={styles.fallbackText}>No places added yet- start adding some!</Text>
+            <Text style={styles.fallbackText}>No texts added yet- start adding some!</Text>
         </View>
     }
 
     return (
         <FlatList 
             style={styles.list} 
-            data={places}
+            data={texts}
             keyExtractor={(item) => {return item.id}}
-            renderItem = {({item}) => <PlaceItem onSelect={selectPlaceHandler} place={item} />}
+            renderItem = {({item}) => <TextItem onSelect={selectTextHandler} text={item} />}
         />
     )
 }

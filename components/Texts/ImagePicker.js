@@ -12,6 +12,8 @@ export default function ImagePicker({onPickImage}) {
             const permissionResponse = await requestPermission();
             return permissionResponse.granted;
         }
+        console.log(cameraPermissionInformation.status)
+
         if(cameraPermissionInformation.status === PermissionStatus.DENIED){
             Alert.alert('Insufficient Permissions',
             'You need to grant camera permissions to use this app.');
@@ -20,19 +22,21 @@ export default function ImagePicker({onPickImage}) {
         return true;
     }
     const takeImageHander = async() => {
-        const hasPermission =  await verifyPermissions();
+        // const hasPermission =  await verifyPermissions();
         
-        if(!hasPermission){
-            return;
-        }
+        // if(!hasPermission){
+        //     return;
+        // }
         
         const image =  await launchCameraAsync({
             allowsEditing: true,
-            aspect: [16,9],
-            quality: 0.5,
+            aspect: [3,1],
+            quality: 0.7,
+            base64: true,
         });
+        console.log('image', image.base64)
         setpickedImage(image.uri);
-        onPickImage(image.uri)
+        onPickImage({uri: image.uri, base64: image.base64})
     }
 
     let imagePreview = <Text>No image taken yet.</Text>

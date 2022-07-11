@@ -14,12 +14,12 @@ export default function TextForm({onCreateText}) {
         setenteredTitle(text);
     }
 
-    const takeImageHandler = (imageUri) => {
-        setselectedIamge(imageUri)
+    const takeImageHandler = (image) => {
+        setselectedIamge(image)
     }
 
 
-    const savePlaceHandler = () => {
+    const saveTextHandler = () => {
         const textData = new TextModel(enteredTitle, selectedIamge);
         onCreateText(textData);
     }
@@ -31,7 +31,7 @@ export default function TextForm({onCreateText}) {
                 <TextInput style={styles.input} onChangeText= {changeTitleHandler} value = {enteredTitle} />
             </View>
             <ImagePicker onPickImage ={takeImageHandler}/>
-            <Button onPress={savePlaceHandler}>Add Place</Button>
+            <Button onPress={saveTextHandler}>Add Text</Button>
         </ScrollView>
     )
 }
